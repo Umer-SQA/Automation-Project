@@ -81,53 +81,6 @@ The Mochawesome configuration is included in the `package.json`:
 
 ---
 
-## 📖 **Using Page Object Model (POM)**
-
-The POM design pattern organizes test logic by separating test cases from the underlying page elements and interactions. Example:
-
-### **Page File (`cypress/pages/LoginPage.js`)**
-```javascript
-class LoginPage {
-  get usernameField() {
-    return cy.get('#username');
-  }
-
-  get passwordField() {
-    return cy.get('#password');
-  }
-
-  get loginButton() {
-    return cy.get('#loginButton');
-  }
-
-  login(username, password) {
-    this.usernameField.type(username);
-    this.passwordField.type(password);
-    this.loginButton.click();
-  }
-}
-
-export const loginPage = new LoginPage();
-```
-
-### **Test File (`cypress/e2e/login.spec.js`)**
-```javascript
-import { loginPage } from '../pages/LoginPage';
-
-describe('Login Tests', () => {
-  beforeEach(() => {
-    cy.visit('/login');
-  });
-
-  it('should log in successfully with valid credentials', () => {
-    loginPage.login('validUser', 'validPassword');
-    cy.contains('Welcome, validUser').should('be.visible');
-  });
-});
-```
-
----
-
 ## 🔍 **Test Reporting**
 
 ### **Viewing Mochawesome Reports**
@@ -143,12 +96,3 @@ describe('Login Tests', () => {
 - Organize test data in the `fixtures/` folder.
 
 ---
-
-## 📚 **References**
-- [Cypress Documentation](https://docs.cypress.io/)
-- [Mochawesome Reporter](https://www.npmjs.com/package/mochawesome)
-- [Page Object Model in Cypress](https://docs.cypress.io/examples/examples/recipes#Page-Objects)
-
----
-
-Feel free to customize this file based on your project's specific needs!
